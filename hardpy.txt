@@ -1,0 +1,21 @@
+from subprocess import Popen, PIPE
+
+def readin(textfile):
+    with open(textfile, mode='r') as f:
+        f_context = f.readin()
+    return f_context        
+    
+
+
+def ping(hosts, count = '1'):
+    for i in hosts:
+        response = Popen('ping -c {} {}'.format(hosts, count), stdout=None, shell=True)
+
+
+a = readin('testfile.txt')
+out = ping(a)
+
+
+
+
+
