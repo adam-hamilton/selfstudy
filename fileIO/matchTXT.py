@@ -3,6 +3,15 @@
 import re
 
 def matchTXT(file='charge.txt', regex=r'^.*(shot|shell).*$', flag=0):
+    '''doc string'''
+    try:
+        re.compile(regex)
+        is_valid = True
+    except re.error:
+        is_valid = False
+        print("the provided regex r'{}' is not valid".format(regex))
+        quit()
+
     try:
         with open(file, mode='r') as f:
             f_content = f.readlines()
@@ -25,5 +34,5 @@ def matchTXT(file='charge.txt', regex=r'^.*(shot|shell).*$', flag=0):
 
 
 if __name__ == '__main__':
-    print(*matchTXT(flag=0), sep='\n')
+    print(*matchTXT(regex=r'[', flag=0), sep='\n')
     print(*matchTXT(flag=1), sep=' ')
