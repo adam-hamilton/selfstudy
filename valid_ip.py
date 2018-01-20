@@ -1,4 +1,4 @@
-def checkIP(inetv4):
+def valid_ip(inetv4):
     '''Args: ipv4 address to test, returns valid or not valid ip result'''
     host = inetv4.split('.')
     host = [int(b) for b in host]
@@ -7,8 +7,8 @@ def checkIP(inetv4):
 
 
 if __name__ == '__main__':
-    '''quick check of checkIP()'''
-    check = checkIP('10.10.10.250')
+    '''quick check of valid_ip()'''
+    check = valid_ip('10.10.10.250')
 
     if check[0]:
         print('The addess {} is valid'.format(check[1]))
