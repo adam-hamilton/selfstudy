@@ -1,21 +1,28 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 '''my tinkering with REGEX & exact string matches to parse text files'''
 import re
 
 def matchTXT(file='charge.txt', regex=r'^.*(shot|shell).*$', flag=0):
-    '''doc string'''
+    '''
+    Args:
+        file: a text file to parse 
+        regex: must supply a valid regex pattern
+        flag: supply optional flag to alter the seach type 
+    Return:
+        a list of matching lines
+    '''
     try:
         re.compile(regex)
-        is_valid = True
     except re.error:
-        is_valid = False
         print("the provided regex r'{}' is not valid".format(regex))
         quit()
 
     try:
         with open(file, mode='r') as f:
             f_content = f.readlines()
-    except:
+    except FileNotFoundError:
         print('unable to open file: {}'.format(file))
         f_content = []
 
@@ -34,5 +41,6 @@ def matchTXT(file='charge.txt', regex=r'^.*(shot|shell).*$', flag=0):
 
 
 if __name__ == '__main__':
-    print(*matchTXT(regex=r'[', flag=0), sep='\n')
+    '''a few example calls to the 'matchTXT()'''
+    print(*matchTXT(flag=0), sep='\n')
     print(*matchTXT(flag=1), sep=' ')
